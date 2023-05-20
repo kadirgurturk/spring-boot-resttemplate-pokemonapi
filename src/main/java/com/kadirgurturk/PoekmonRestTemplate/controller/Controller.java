@@ -18,6 +18,7 @@ public class Controller {
     @GetMapping("findpoke/")
     public ResponseEntity<Poke> findPoke(@RequestParam("id") int id)
     {
+
         return ResponseEntity.ok(pokeService.findPoke(id));
     }
 }
