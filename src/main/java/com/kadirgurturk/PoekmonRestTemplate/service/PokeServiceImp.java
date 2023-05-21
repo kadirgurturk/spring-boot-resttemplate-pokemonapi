@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Optional;
+
 @Service
 public class PokeServiceImp implements PokeService{
 
@@ -21,10 +23,10 @@ public class PokeServiceImp implements PokeService{
 
 
     @Override
-    public Poke findPoke(int id) {
+    public Optional<Poke> findPoke(int id) {
 
         var newUrl = url + id;
 
-        return restTemplate.getForObject(newUrl,Poke.class);
+        return Optional.of(restTemplate.getForObject(newUrl,Poke.class));
     }
 }

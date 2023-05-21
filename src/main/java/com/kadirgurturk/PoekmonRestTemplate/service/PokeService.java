@@ -2,7 +2,9 @@ package com.kadirgurturk.PoekmonRestTemplate.service;
 
 import com.kadirgurturk.PoekmonRestTemplate.model.Poke;
 
+import java.util.Optional;
+
 public interface PokeService {
 
-    Poke findPoke(int id);
+    Optional<Poke> findPoke(int id);
 }
