@@ -1,7 +1,6 @@
 package com.kadirgurturk.PoekmonRestTemplate.service;
 
 import com.kadirgurturk.PoekmonRestTemplate.model.Poke;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -9,12 +8,12 @@ import org.springframework.web.client.RestTemplate;
 import java.util.Optional;
 
 @Service
-public class PokeServiceImp implements PokeService{
+public class PokeRestServiceImp implements PokeRestService {
 
 
     private RestTemplate restTemplate;
 
-    public PokeServiceImp(RestTemplate restTemplate) {
+    public PokeRestServiceImp(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 
@@ -23,7 +22,7 @@ public class PokeServiceImp implements PokeService{
 
 
     @Override
-    public Optional<Poke> findPoke(int id) {
+    public Optional<Poke> findPoke(Long id) {
 
         var newUrl = url + id;
 
