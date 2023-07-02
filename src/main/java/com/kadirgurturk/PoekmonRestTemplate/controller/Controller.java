@@ -5,6 +5,7 @@ import com.kadirgurturk.PoekmonRestTemplate.model.Poke;
 import com.kadirgurturk.PoekmonRestTemplate.model.PokeList;
 import com.kadirgurturk.PoekmonRestTemplate.service.PokeRestService;
 import com.kadirgurturk.PoekmonRestTemplate.service.PokeService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpClientErrorException;
 
@@ -22,20 +23,20 @@ public class Controller {
     }
 
     @GetMapping()
-    public Optional<Poke> findPoke(@RequestParam("id") Long id)
+    public ResponseEntity<?> findPoke(@RequestParam("id") Long id)
     {
 
         try {
-            return pokeService.findById(id);
+            return ResponseEntity.ok(pokeService.findById(id).get());
         } catch (HttpClientErrorException e) {
             throw new NotFoundExcepiton("This id is not valid"); // Yakalanmış istisnayı tekrar fırlatın
         }
     }
 
     @GetMapping("/list/")
-    public List<Poke> findPoke(@RequestParam("gen") int generation)
+    public ResponseEntity<?> findPoke(@RequestParam("gen") int generation)
     {
 
-       return pokeService.findPokeList(generation);
+       return ResponseEntity.ok(pokeService.findPokeList(generation));
     }
 }

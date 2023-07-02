@@ -4,9 +4,9 @@ import java.util.List;
 
 public class PokeList {
 
-    List<Poke> pokes;
+    public List<Poke> pokes;
 
-    public PokeList(List<Poke> pokes) {
-        this.pokes = pokes;
+    public PokeList() {
+
     }
 }

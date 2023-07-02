@@ -1,5 +1,9 @@
 package com.kadirgurturk.PoekmonRestTemplate.model;
 
+import com.kadirgurturk.PoekmonRestTemplate.model.Fields.Sprites;
+import com.kadirgurturk.PoekmonRestTemplate.model.Fields.Stats;
+import com.kadirgurturk.PoekmonRestTemplate.model.Fields.Types;
+
 import java.util.List;
 
 public class Poke {

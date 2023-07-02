@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
-public class PoekmonRestTemplateApplication {
+public class PokemonRestTemplateApplication {
 
 	@Bean
 	public RestTemplate restTemplate() {
@@ -14,7 +14,7 @@ public class PoekmonRestTemplateApplication {
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.run(PoekmonRestTemplateApplication.class, args);
+		SpringApplication.run(PokemonRestTemplateApplication.class, args);
 	}
 
 }

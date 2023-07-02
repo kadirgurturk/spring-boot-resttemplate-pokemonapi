@@ -1,4 +1,4 @@
-package com.kadirgurturk.PoekmonRestTemplate.model;
+package com.kadirgurturk.PoekmonRestTemplate.model.Fields;
 
 public class Sprites {
     public String front_default;
