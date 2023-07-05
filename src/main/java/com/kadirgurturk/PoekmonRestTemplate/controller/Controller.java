@@ -33,7 +33,7 @@ public class Controller {
         }
     }
 
-    @GetMapping("/list/")
+    @GetMapping("list/")
     public ResponseEntity<?> findPoke(@RequestParam("gen") int generation)
     {
 
