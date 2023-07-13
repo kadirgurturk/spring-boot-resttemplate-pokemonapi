@@ -51,4 +51,36 @@ public class PokeService {
     }
 
 
+    public PokeList pagingPoke(int generation, int page, int size) {
+
+        if(generation > 5 || generation < 1) throw new BadRequestExcepiton("Gen could take only values between 1 and 5");
+
+        if(page < 0 || size < 1){
+            throw new BadRequestExcepiton("page and size must to be bigger than zero");
+        }
+
+        var between = Utils.findGenBetweens(generation);
+
+        var pokes = new ArrayList<Poke>();
+
+        var starter = between[0] + page * size;
+
+        if(starter > between[1] - size){
+            throw new BadRequestExcepiton("Page or sort not correct");
+        }
+
+        for(int i = between[0] ; i < between[1] ; ++i){
+            var poke = findById(Long.valueOf(i));
+
+            pokes.add(poke.get());
+
+        }
+
+        return pokemonMapper.toPokeList(pokes);
+
+    }
+
+    public PokeList sortingPoke(int generation, String sort) {
+        return null;
+    }
 }

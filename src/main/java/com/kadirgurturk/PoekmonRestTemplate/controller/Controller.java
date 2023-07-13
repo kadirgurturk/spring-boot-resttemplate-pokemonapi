@@ -39,4 +39,20 @@ public class Controller {
 
        return ResponseEntity.ok(pokeService.findPokeList(generation));
     }
+
+    @GetMapping()
+    public ResponseEntity<?> pagingPoke(@RequestParam("gen") int generation, @RequestParam("page") int page,@RequestParam("size") int size)
+    {
+
+        return ResponseEntity.ok(pokeService.pagingPoke(generation,page,size));
+
+    }
+
+    @GetMapping()
+    public ResponseEntity<?> sortingPoke(@RequestParam("gen") int generation, @RequestParam("sort") String sort)
+    {
+
+        return ResponseEntity.ok(pokeService.sortingPoke(generation,sort));
+
+    }
 }
