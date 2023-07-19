@@ -5,12 +5,15 @@ import com.kadirgurturk.PoekmonRestTemplate.mapper.PokemonMapper;
 import com.kadirgurturk.PoekmonRestTemplate.model.Poke;
 import com.kadirgurturk.PoekmonRestTemplate.model.PokeList;
 import com.kadirgurturk.PoekmonRestTemplate.util.Utils;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@EnableCaching
 @Service
 public class PokeService {
 
@@ -22,13 +25,13 @@ public class PokeService {
         this.pokemonMapper = pokemonMapper;
     }
 
+
     public Optional<Poke> findById(Long id)
     {
         if(id > 1111 || id < 1) throw new BadRequestExcepiton("Id is not valid");
         return pokeRestService.findPoke(id);
 
     }
-
     public PokeList findPokeList(Integer gen)
     {
 

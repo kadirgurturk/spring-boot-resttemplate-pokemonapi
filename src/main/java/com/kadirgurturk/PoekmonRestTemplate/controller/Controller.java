@@ -22,7 +22,7 @@ public class Controller {
         this.pokeService = pokeService;
     }
 
-    @GetMapping()
+    @GetMapping("find/")
     public ResponseEntity<?> findPoke(@RequestParam("id") Long id)
     {
 
@@ -48,11 +48,5 @@ public class Controller {
 
     }
 
-    @GetMapping()
-    public ResponseEntity<?> sortingPoke(@RequestParam("gen") int generation, @RequestParam("sort") String sort)
-    {
 
-        return ResponseEntity.ok(pokeService.sortingPoke(generation,sort));
-
-    }
 }
