@@ -14,36 +14,38 @@ import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSeriali
 import org.springframework.data.redis.serializer.RedisSerializationContext.SerializationPair;
 
 
+
 @Configuration
 public class RedisConfig {
-        @Value("${redis.host}")
-        private String redisHost;
+    @Value("${redis.host}")
+    private String redisHost;
 
-        @Value("${redis.port}")
-        private int redisPort;
+    @Value("${redis.port}")
+    private int redisPort;
 
-        @Bean
-        public LettuceConnectionFactory redisConnectionFactory() {
-            RedisStandaloneConfiguration configuration = new RedisStandaloneConfiguration(redisHost, redisPort);
+    @Bean
+    public LettuceConnectionFactory redisConnectionFactory() {
+        RedisStandaloneConfiguration configuration = new RedisStandaloneConfiguration(redisHost, redisPort);
 
-            return new LettuceConnectionFactory(configuration);
-        }
+        return new LettuceConnectionFactory(configuration);
+    }
 
-        @Bean
-        public RedisCacheManager cacheManager() {
-            RedisCacheConfiguration cacheConfig = myDefaultCacheConfig(Duration.ofMinutes(10)).disableCachingNullValues();
 
-            return RedisCacheManager.builder(redisConnectionFactory())
-                    .cacheDefaults(cacheConfig)
-                    .withCacheConfiguration("pokemons", myDefaultCacheConfig(Duration.ofMinutes(10)))
-                    .withCacheConfiguration("pokemon", myDefaultCacheConfig(Duration.ofMinutes(5)))
-                    .build();
-        }
+    @Bean
+    public RedisCacheManager cacheManager() {
+        RedisCacheConfiguration cacheConfig = myDefaultCacheConfig(Duration.ofMinutes(10)).disableCachingNullValues();
 
-        private RedisCacheConfiguration myDefaultCacheConfig(Duration duration) {
-            return RedisCacheConfiguration
-                    .defaultCacheConfig()
-                    .entryTtl(duration)
-                    .serializeValuesWith(SerializationPair.fromSerializer(new GenericJackson2JsonRedisSerializer()));
-        }
+        return RedisCacheManager.builder(redisConnectionFactory())
+                .cacheDefaults(cacheConfig)
+                .withCacheConfiguration("pokemons", myDefaultCacheConfig(Duration.ofMinutes(5)))
+                .withCacheConfiguration("pokemon", myDefaultCacheConfig(Duration.ofMinutes(1)))
+                .build();
+    }
+
+    private RedisCacheConfiguration myDefaultCacheConfig(Duration duration) {
+        return RedisCacheConfiguration
+                .defaultCacheConfig()
+                .entryTtl(duration)
+                .serializeValuesWith(SerializationPair.fromSerializer(new GenericJackson2JsonRedisSerializer()));
+    }
 }

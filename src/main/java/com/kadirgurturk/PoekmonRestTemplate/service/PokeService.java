@@ -25,13 +25,14 @@ public class PokeService {
         this.pokemonMapper = pokemonMapper;
     }
 
-
+    @Cacheable(value = "pokemons", key = "#id")
     public Optional<Poke> findById(Long id)
     {
         if(id > 1111 || id < 1) throw new BadRequestExcepiton("Id is not valid");
         return pokeRestService.findPoke(id);
 
     }
+    @Cacheable(value = "pokemons", key = "#gen")
     public PokeList findPokeList(Integer gen)
     {
 
@@ -53,7 +54,7 @@ public class PokeService {
 
     }
 
-
+    @Cacheable(value = "pokemons", key = "#paging")
     public PokeList pagingPoke(int generation, int page, int size) {
 
         if(generation > 5 || generation < 1) throw new BadRequestExcepiton("Gen could take only values between 1 and 5");
