@@ -54,7 +54,7 @@ public class PokeService {
 
     }
 
-    @Cacheable(value = "pokemons", key = "#paging")
+    @Cacheable(value = "pokemons", key = "{ #generation, #page, #size }")
     public PokeList pagingPoke(int generation, int page, int size) {
 
         if(generation > 5 || generation < 1) throw new BadRequestExcepiton("Gen could take only values between 1 and 5");
