@@ -54,7 +54,6 @@ public class PokeService {
 
     }
 
-    @Cacheable(value = "pokemons", key = "{ #generation, #page, #size }")
     public PokeList pagingPoke(int generation, int page, int size) {
 
         if(generation > 5 || generation < 1) throw new BadRequestExcepiton("Gen could take only values between 1 and 5");
@@ -69,11 +68,13 @@ public class PokeService {
 
         var starter = between[0] + page * size;
 
+        var end = between[0] + page * size + size;
+
         if(starter > between[1] - size){
             throw new BadRequestExcepiton("Page or sort not correct");
         }
 
-        for(int i = between[0] ; i < between[1] ; ++i){
+        for(int i = starter ; i < end ; ++i){
             var poke = findById(Long.valueOf(i));
 
             pokes.add(poke.get());
