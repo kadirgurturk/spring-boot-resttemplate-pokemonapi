@@ -71,7 +71,7 @@ Please note that the application will be accessible at localhost:8085 instead of
 - 1.NotFoundExcepiton: Thrown when a requested Pokemon is not found (status code 404 Not Found).
 - 2.BadRequestExcepiton: Thrown when an invalid request is made (status code 400 Bad Request).
   
-##Caching
+## Caching
 #### The application uses Redis as a caching mechanism to improve the performance of repeated API calls. Cached data is stored for a specified duration and can be customized in the RedisConfig class.
 
 
